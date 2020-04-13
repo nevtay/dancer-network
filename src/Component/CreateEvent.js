@@ -17,6 +17,8 @@ class CreateEvent extends React.Component {
       address: "",
       coordinates: { lat: "", lng: "" },
       eventImage: null,
+      imageName: "",
+      eventImagePreviewUrl: null,
     };
   }
 
@@ -65,9 +67,12 @@ class CreateEvent extends React.Component {
     });
   };
 
-  onChangeImage = (event) => {
+  onChangeEventImage = (event) => {
     this.setState({
-      eventImage: URL.createObjectURL(event.target.files[0]),
+      eventImage: event.target.files[0],
+    });
+    this.setState({
+      eventImagePreviewUrl: URL.createObjectURL(event.target.files[0]),
     });
   };
 
@@ -95,9 +100,13 @@ class CreateEvent extends React.Component {
             placeholder="Event Name"
             onChange={this.onChangeEventName}
           />
-          {/* Event poster:
-          <img src={this.state.eventImage} height="50%" width="100%" />
-          <input type="file" onChange={this.onChangeImage} /> */}
+          Event poster:
+          <img
+            src={this.state.eventImagePreviewUrl}
+            height="50%"
+            width="100%"
+          />
+          {/* <input type="file" onChange={this.onChangeEventImage} /> */}
           Dance Style:
           <select onChange={this.onChangeDanceStyle}>
             <option>Hip Hop</option>
